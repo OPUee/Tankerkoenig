@@ -73,7 +73,6 @@ def get_data():
     return r.json()
 
 
-
 def main():
     global SETTINGS
 
@@ -88,8 +87,8 @@ def main():
     with open(sys.argv[1], 'r') as fp:
         SETTINGS = toml.load(fp)
 
-    #data = get_data()
-    #write_data(data)
+    data = get_data()
+    write_data(data)
 
 
 if __name__ == '__main__':
