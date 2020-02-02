@@ -3,9 +3,11 @@
 import sys
 import sqlite3
 import toml
+from os.path import isfile
 import requests as req
 from time import time
 
+SETTINGS = None
 DATABASE_NAME = 'tankerkoenig.db'
 
 # create database:
@@ -68,9 +70,21 @@ def get_data():
 
 
 def main():
+    global SETTINGS
 
-    data = get_data()
-    write_data(data)
+    if len(sys.argv) != 2:
+        print('tankerkoenig.py <path-to-setting-toml>')
+        return
+
+    if not isfile(sys.argv[1]):
+        print('file not found: {}'.format(sys.argv[1]))
+        return
+
+    with open(sys.argv[1], 'r') as fp:
+        SETTINGS = toml.load(fp)
+
+    #data = get_data()
+    #write_data(data)
 
 
 if __name__ == '__main__':
