@@ -63,7 +63,12 @@ def write_data(data):
 
 
 def get_data():
-    r = req.get(URL.format(LAT, LNG, RAD, SORT, TYPE, API_KEY))
+    r = req.get(SETTINGS['URL'].format(SETTINGS['LAT'],
+                                       SETTINGS['LNG'],
+                                       SETTINGS['RAD'],
+                                       SETTINGS['SORT'],
+                                       SETTINGS['TYPE'],
+                                       SETTINGS['API_KEY']))
     print(r.status_code)
     return r.json()
 
